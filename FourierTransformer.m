@@ -1,8 +1,8 @@
-fnames = dir('H:\Tin Whistle\Recordings\Scales\Key - C\*.wav');
+fnames = dir('H:\Tin Whistle\Recordings\Scales\Key - D\*.wav');
 numfids = length(fnames);
 
 for K = 1:numfids
-    sound = wavread(strcat('H:\Tin Whistle\Recordings\Scales\Key - C\', fnames(K).name));
+    sound = wavread(strcat('H:\Tin Whistle\Recordings\Scales\Key - D\', fnames(K).name));
     Y = fft(sound, 2048);
     freq = 44100*(0:1023)/2048;
     Py = Y.*conj(Y)/2048;

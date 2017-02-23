@@ -20,9 +20,8 @@ function FindModes(freqLower, freqUpper)
     rHolesq = rHole.*rHole;
 
     % 0 means closed, 1 means open
-    holeState = [0; 0; 0; 0; 0; 0];
+    holeState = [0; 0; 0; 0; 1; 0];
 
-    test = 1000;
     n = 200;
     dx = len/n;
     freq = freqLower;
