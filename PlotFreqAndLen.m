@@ -1,5 +1,5 @@
-% Searches for any solution within the given bounds. 
-% Plots of pressure vs distance will be made for every discovered solution
+%Searches for fundamentals for a given whistle length and then plots the
+%fundamentals against whistle length
 
 function PlotFreqAndLen()
     lambda = 0.026;
