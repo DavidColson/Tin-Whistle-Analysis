@@ -11,11 +11,11 @@ function PlotErrorScales(cellTable, shiftAmount)
     for K = 1:5
         frequencies = transpose(cell2mat(cellTable(K+1, 1:8)));
         frequencies = circshift(frequencies, shiftAmount);
-        labels = circshift(labels, shiftAmount);
         figure(1);
         hold on;
         h(1) = plot(x, frequencies, '-or', 'LineWidth', 2, 'DisplayName', 'Recorded');
         set(gca,'XTickLabel',labels)
+        xlim([1, 8]);
     end
    
     avfrequencies = transpose(cell2mat(cellTable(8, 1:8)));
@@ -25,6 +25,6 @@ function PlotErrorScales(cellTable, shiftAmount)
     
     h(2) = errorbar(x, avfrequencies, errors, '-ob', 'LineWidth', 2, 'DisplayName', 'Average');
     ylabel('Note Frequency (Hz)');
-    title('Recorded Scale for C Whistle with errors');
+    title('Recorded Scale for Bb Whistle with errors');
     legend(h);
 end

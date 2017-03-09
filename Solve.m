@@ -2,7 +2,11 @@
     % boundary conditions however and so this is used elsewhere to find a
     % solution for given boundary conditions
     function [X, P, U] = Solve(n, dx, params, initP, initU)
-        hp = [147.6e-3; 168e-3; 191.2e-3; 213.2e-3; 230.9e-3; 255.9e-3]-30e-3;
+        
+        % Hole positions, specific to each whistle
+        % Note that this is kept in this file for for performance reasons
+        % since it needs to be accessed frequently
+        hp = [186.81e-3, 212.60e-3, 239.63e-3, 267.61e-3, 288.93e-3, 323.34e-3]-42e-3;
         
         % Pre Allocate space for these before the loop
         internalP = zeros(1, n+1);
