@@ -7,7 +7,7 @@
 % Optionally it also plots out the fourier transforms of each note
 
 function result = FourierTransformer(bShouldPlot)
-    fnames = dir('H:\Tin Whistle\Recordings Session 2\Key - C\*.wav');
+    fnames = dir('H:\Tin Whistle\Recordings Session 2\Key - Bb\*.wav');
     numfids = length(fnames);
 
     Freqs = {};
@@ -16,19 +16,20 @@ function result = FourierTransformer(bShouldPlot)
     rowCounter = 1;
     
     for K = 1:numfids
-        sound = wavread(strcat('H:\Tin Whistle\Recordings Session 2\Key - C\', fnames(K).name));
-        Y = fft(sound, 2048);
-        freq = 44100*(0:1023)/2048;
-        Py = Y.*conj(Y)/2048;
-        [ymax, x] = max(Py(1:1024));
+        sound = wavread(strcat('H:\Tin Whistle\Recordings Session 2\Key - Bb\', fnames(K).name));
+        Y = fft(sound, 100000);
+        freq = 44100*(0:8191)/100000;
+        Py = Y.*conj(Y)/100000;
+        [ymax, x] = max(Py(1:8192));
         
         if (bShouldPlot)
-            figure(K);
-            plot(freq, Py(1:1024));
+            figure(1);
+            subplot(3, 1, K);
+            plot(freq, Py(1:8192));
             title(['Key - D, Note - ' fnames(K).name(1:end-4)]);
             xlabel('Frequency (Hz)');
             ylabel('Power (Watts)');
-            xlim([0 0.5e4]);
+            xlim([0 0.2e4]);
             
             txt1 = ['\leftarrow peak = ' num2str(freq(x)) 'Hz'];
             text(freq(x),ymax,txt1);
