@@ -11,7 +11,7 @@ function VarRadiusFindModes(freqLower, freqUpper)
     wallThickness = 0.52e-3;
 
      % 0 means closed, 1 means open
-    holeState = [0; 0; 0; 0; 0; 0];
+    holeState = [0; 0; 0; 0; 0; 1];
     
     % Data calculated from whistle dimensions and various constants not
     % specific to each whistle
@@ -41,9 +41,11 @@ function VarRadiusFindModes(freqLower, freqUpper)
        
        % Calculate the coefficients for the given frequency and pack them
        % up ready to give the solver
+       % Note that they are calculated without radius, as the
+       % VarRadiusSolve function does it during solving
        Zc = -freq*0.2927*sqrt(-1)*rho0*wallThickness;
        Yc = sqrt(-1)*2*pi*pi*freq*wallThickness;
-       Yo = 1/(9.85*rho0*freq*sqrt(-1));
+       Yo = 1/(1.2*rho0*freq*sqrt(-1));
        params = struct('Zclosed', Zc*(rHolesq.*(1-holeState)),...
                        'Yclosed', Yc*(rHolesq.*(1-holeState)),...
                        'Yopen', Yo*(rHole.*holeState),...
@@ -57,7 +59,7 @@ function VarRadiusFindModes(freqLower, freqUpper)
        % ensure it's what we want out of a solution
        test = P(n+1) - (sqrt(-1)*1.2266*rho0*freq*U(n+1)/radius(len));
        test = test/max(P);
-       if (abs(test) < 1e-3)
+       if (abs(test) < 5e-3)
            % Frequency Found, plot the result
             pmax = max(P);
             figure(figureCounter);

@@ -7,6 +7,8 @@
 % Optionally it also plots out the fourier transforms of each note
 
 function result = FourierTransformer(bShouldPlot)
+    % Retrieves a list of all filenames in a directory, change this to
+    % change what data you analyse
     fnames = dir('H:\Tin Whistle\Recordings Session 2\Key - Bb\*.wav');
     numfids = length(fnames);
 
@@ -16,12 +18,14 @@ function result = FourierTransformer(bShouldPlot)
     rowCounter = 1;
     
     for K = 1:numfids
+        %for each filename, load the file and perform the FFT
         sound = wavread(strcat('H:\Tin Whistle\Recordings Session 2\Key - Bb\', fnames(K).name));
         Y = fft(sound, 100000);
         freq = 44100*(0:8191)/100000;
         Py = Y.*conj(Y)/100000;
         [ymax, x] = max(Py(1:8192));
         
+        % If the user asked to plot the FFT's do so now
         if (bShouldPlot)
             figure(1);
             subplot(3, 1, K);
@@ -35,6 +39,8 @@ function result = FourierTransformer(bShouldPlot)
             text(freq(x),ymax,txt1);
         end
         
+        % For a given note name, calculated from the filename, tabulate all
+        % frequency peaks in a cell table.
         noteName = fnames(K).name(1:length(fnames(K).name)-5);
         if ~strcmp(noteName, nameCache)
             if (columnCounter > 0)
@@ -55,6 +61,8 @@ function result = FourierTransformer(bShouldPlot)
         rowCounter = rowCounter + 1;
     end
     
+    % For each column of frequency peaks calculate an average and std and
+    % store in the cell table.
     measures = cell2mat(Freqs(2:6, columnCounter));
     average = sum(measures)/5;
     Freqs{7, columnCounter} = 'Average';

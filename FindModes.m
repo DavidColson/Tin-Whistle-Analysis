@@ -4,13 +4,13 @@
 function FindModes(freqLower, freqUpper)
     
     % Whistle dimensions, specific to each whistle
-    rHole = [2.46e-3; 2.94e-3; 2.94e-3; 2.46e-3; 3.51e-3; 3.45e-3];
-    len = 296.98e-3-33e-3;
-    wallThickness = 0.52e-3;
-    radius = 5.91e-3;
+    rHole = [3.21e-3; 3.66e-3; 3.93e-3; 3.15e-3; 4.35e-3; 4.26e-3];
+    len = 372.98e-3-42e-3;
+    wallThickness = 0.58e-3;
+    radius =7.39e-3;
 
      % 0 means closed, 1 means open
-    holeState = [0; 0; 0; 0; 0; 1];
+    holeState = [0; 0; 0; 0; 0; 0];
     
     % Data calculated from whistle dimensions and various constants not
     % specific to each whistle

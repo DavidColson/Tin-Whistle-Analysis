@@ -2,7 +2,6 @@
     % boundary conditions however and so this is used elsewhere to find a
     % solution for given boundary conditions
     function [X, P, U] = Solve(n, dx, params, initP, initU)
-        
         % Hole positions, specific to each whistle
         % Note that this is kept in this file for for performance reasons
         % since it needs to be accessed frequently
@@ -21,7 +20,8 @@
         for i =2:n+1
            internalX(i) = (i-1)*dx;
            
-           % This checks if the current timestep is underneath a hole, if
+            
+            % This checks if the current timestep is underneath a hole, if
            % it is hole is the ID number of the hole, otherwise it's -1
            hole = -1;
            for j = 1:6
@@ -29,8 +29,8 @@
                    hole = j;
                    break;
                end
-           end 
-            
+           end
+           
            % Correct the coefficients if we're underneath a hole
            if (hole > 0)
                Y = params.Y0+(params.Yclosed(hole)+params.Yopen(hole));

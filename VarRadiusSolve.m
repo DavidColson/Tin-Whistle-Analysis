@@ -11,7 +11,7 @@
         % Hole positions, specific to each whistle
         % Note that this is kept in this file for for performance reasons
         % since it needs to be accessed frequently
-        hp = [247.97e-3, 224.26e-3, 208.24e-3, 184.41e-3, 163.15e-3, 138.99e-3];
+        hp = [138.99e-3, 163.15e-3, 184.41e-3, 208.24e-3, 224.26e-3, 247.97e-3];
         
         % Pre Allocate space for these before the loop
         internalP = zeros(1, n+1);
@@ -37,6 +37,8 @@
            alpha = (gamma-1)*(lambda/(rho0*Cp*S))^0.5;
            K = K0*(1-alpha);
            
+           % Finish calculating the coefficients using the radius a this
+           % step
            Zclosed = (params.Zclosed)./(radiusFunc(internalX(i))^4);
            Yclosed = (params.Yclosed)./K;
            Z0 = (params.Z0)/(pi*radiusFunc(internalX(i))^2);

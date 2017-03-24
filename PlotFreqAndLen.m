@@ -7,23 +7,22 @@ function PlotFreqAndLen()
     rho0 = 1.20;
     P0 = 1.01e5;
     gamma = 1.4;
-    len = 250e-3;
-    wallThickness = 4e-4;
-    radius = 6e-3;
-    S = pi*radius*radius;
 
+    rHole = [2.46e-3; 2.94e-3; 2.94e-3; 2.46e-3; 3.51e-3; 3.45e-3];
+    wallThickness = 0.52e-3;
+    radius = 5.91e-3;
+    
+     % 0 means closed, 1 means open
+    holeState = [0; 0; 0; 0; 0; 0];
+    
+    S = pi*radius*radius;
     K0 = gamma*P0;
     alpha = (gamma-1)*(lambda/(rho0*Cp*S))^0.5;
     K = K0*(1-alpha);
-
-    rHole = [2.3e-3; 2.9e-3; 2.6e-3; 2.5e-3; 3.1e-3; 3.1e-3];
     rHolesq = rHole.*rHole;
-
-    % 0 means closed, 1 means open
-    holeState = [0; 0; 0; 0; 0; ];
     
     n = 200;
-    lengths = linspace(50e-3, 350e-3, 50);
+    lengths = linspace(50e-3, 450e-3, 50);
     
     % create a vector of whistle lengths
     % for loop over all the lenghts, searching for the first solution. Once

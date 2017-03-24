@@ -3,23 +3,23 @@
 % measurement
 
 function PlotComparisons(recordedCellData, shiftAmount)
-    simulatedData = [472.66;
-                    510.98;
-                    569.26;
-                    613.45;
-                    687.22;
-                    770.84;
-                    862.03;
-                    963];
+    simulatedData = [580.72;
+                    624.97;
+                    691.72;
+                    740.81;
+                    836.26;
+                    942.8;
+                    1089.63;
+                    1159.62];
 
-    knownData = [466.164; 
-                523.251; 
-                587.33; 
-                622.254; 
-                698.456; 
+    knownData = [587.33; 
+                659.255; 
+                739.989; 
                 783.991; 
                 880; 
-                932.328];
+                987.767; 
+                1108.731; 
+                1174.659];
      
     % Valid for C Whistle Scale
     sideal = zeros(8, 1)
@@ -41,10 +41,10 @@ function PlotComparisons(recordedCellData, shiftAmount)
     h(1) = plot(x, simulatedData, '-ob', 'LineWidth', 2, 'DisplayName', 'Simulated');
     
     hold on;
-    %h(2) = plot(x, knownData, '-ok', 'LineWidth', 2, 'DisplayName', 'Tempered Scale');
+    h(2) = plot(x, knownData, '-ok', 'LineWidth', 2, 'DisplayName', 'Tempered Scale');
     
     hold on;
-    h(2) = plot(x, sideal, '-oc', 'LineWidth', 2, 'DisplayName', 'Ideal Simulated Scale');
+    h(3) = plot(x, sideal, '-oc', 'LineWidth', 2, 'DisplayName', 'Ideal Simulated Scale');
     
     % Plot average of recorded values with error bars
     avfrequencies = transpose(cell2mat(recordedCellData(8, 1:8)));
